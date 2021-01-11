@@ -1,0 +1,77 @@
+<!Doctype html/>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <title>Attendance log</title>
+ </head>
+ <div class="btn-group">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> By user
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Surya</a></li>
+      <li><a class="dropdown-item" href="#">Abhishek</a></li>
+      <li><a class="dropdown-item" href="#">Pradeep</a></li>
+      <li><a class="dropdown-item" href="#">Padma</a></li>
+      <li><a class="dropdown-item" href="#">Shravya</a></li>
+      <li><a class="dropdown-item" href="#">Venkatesh</a></li>
+      <li><a class="dropdown-item" href="#">Rajesh</a></li>
+      <li><a class="dropdown-item" href="#">Saidulu</a></li>
+      <li><a class="dropdown-item" href="#">Prashant</a></li>
+      <li><a class="dropdown-item" href="#">Harsha</a></li>
+      <li><a class="dropdown-item" href="#">Sandip</a></li>
+      <li><a class="dropdown-item" href="#">Sumanth.G</a></li>
+      <li><a class="dropdown-item" href="#">Sumanth.K</a></li>
+  </div>
+</div> 
+ <body>
+  <h2 class="text-center">Attendance log</h2>  
+  <div class='container row'>
+    <div class='col-md-10 '>
+      <table class="table">
+        {% for date, entries in log_by_date.items() %}
+          <thead>
+            <tr><th class='bg-primary' colspan="2">{{ date }}</th></tr>
+              <tr>
+                <th>Name</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for entry in entries %}
+              <tr>
+                <td>{{ entry.name }}</td>
+                  <td>{{ entry.time }}</td> 
+              </tr>
+            {% endfor %}
+          </tbody>
+        {% endfor %}
+      </table>
+    </div>
+    <div class='col-md-2'>
+      <form action="/action_page.php">
+        <div class='row'>
+            <div class='col-md-3'>From: </div>
+            <div class='col-md-9'><input type="date" id='from_date' name="calender"></div>
+          </div>
+          <div class='row'>
+            <div class='col-md-3'>To: </div>
+            <div class='col-md-9'><input type="date" id='to_date' name="calender"></div>
+          </div>
+          <input type="button" onclick="compare_dates()" value= "Enter"></button>
+      </form>
+    </div>
+  </div>
+    <script language="javascript">
+      function compare_dates()
+      { 
+        var from_date = $('#from_date').val();
+        var to_date = $('#to_date').val();
+        alert(from_date)
+      }
+
+ </body>
+</html>

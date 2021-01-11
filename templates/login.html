@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Login page</title>
+    </head>
+    <style>
+    body {
+    /*background-image: url("/home/surya/Downloads/avenir_digital.jpg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    margin-right: 900px;    }*/
+     background: lightblue url("/home/avi101/Desktop/LOGO.png") no-repeat fixed center; 
+    </style>
+        
+    <body>
+        <div class='container'>
+        <h2 style="background-color:aqua;"></h2>
+        <form name="login">
+            Username <input type="text" name="userid"/><br/><br>
+            Password <input type="password" name="pswrd"/><br/><br>
+
+            <input type="submit" onclick="check(this.form)" value= "Login"/>
+            <input type="reset" value= "Cancel"/>
+        </form>
+        <script language="javascript">
+            function check(form) { 
+                if(form.userid.value == "test123" && form.pswrd.value == "test123") {
+                    window.open('/Attendance')
+                }
+                else {
+                    alert("Error Password or Username")
+                }
+            }
+        </script>
+    </body>
+</html>
+

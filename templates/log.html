@@ -1,0 +1,25 @@
+<table class="table">
+  {% if not log_by_date %}
+    <tr><th class="text-center">No records found</th></tr>
+  {% else %}  
+    {% for date, entries in log_by_date.items() %}
+      <thead>
+        <tr><th class='bg-primary' colspan="3">{{ date }}</th></tr>
+          <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for entry in entries %}
+          <tr>
+            <td>{{ entry.name }}</td>
+            <td>{{ entry.time }}</td>
+            <td>{{ entry.status }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    {% endfor %}
+  {% endif %}
+</table>

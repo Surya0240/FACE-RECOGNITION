@@ -1,0 +1,84 @@
+<!Doctype html/>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<script language="javascript">
+		function filter_by_date()
+		{ 
+			var from_date = $('#from_date').val();
+			var to_date = $('#to_date').val();
+			var name = $('#selected_name').val()
+			$.post("filter_by_date", {'from_date': from_date, 'to_date': to_date, 'name': name}
+				).done(function(response) {
+					$('#log').html(response)
+				});
+		}
+	</script>
+  <title>Attendance log</title>
+ </head>      
+ <body>
+ <div class="text-center">
+ 	<h2 class='col-md-10' font-style:italic  background: lightblue >Zeva.ai</h2>
+    <div class="container">
+	    <div class="navbar-header navbar-right">	
+	    	<nav> <a class="navbar-brand" href="/" background:green >Logout</a>
+	    </div>
+			</nav>
+	</div>
+<!--   <h2 class="text-center" font-style:bold >ATTENDANCE</h2> -->
+  <div class='container row'>
+    <div class='col-md-10' id="log">
+      <table class="table">
+		  {% for date, entries in log_by_date.items() %}
+		    <thead>
+		      <tr><th class='bg-primary' colspan="3">{{ date }}</th></tr>
+		        <tr>
+		          <th>Name</th>
+		          <th>Time</th>
+		          <th>Status</th>
+		        </tr>
+		      </thead>
+		      <tbody>
+		      {% for entry in entries %}
+		        <tr>
+		          <td>{{ entry.name }}</td>
+		            <td>{{ entry.time }}</td> 
+		            <td>{{ entry.status }}</td> 
+		        </tr>
+		      {% endfor %}
+		    </tbody>
+		  {% endfor %}
+		</table>
+	</div>
+    <div class='col-md-2'>
+      <form action="/action_page.php">
+        <div class='row'>
+            <div class='col-md-3'>From: </div>
+            <div class='col-md-9'><input type="date" id='from_date' name="calender"></div>
+          </div>
+          <div class='row'>
+            <div class='col-md-3'>To: </div>
+            <div class='col-md-9'><input type="date" id='to_date' name="calender"></div>
+          </div>
+	  	<div class="form-group">
+		  <label for="sel1">Select list:</label>
+		  <select id="selected_name" class="form-control" id="sel1">
+			<option value="">--All--</option>
+		  	{% for name in names %}
+			    <option value="{{ name }}">{{ name }}</option>
+		  	{% endfor %}
+		  </select>
+		</div> 
+		  <div>
+          	<input type="button" onclick="filter_by_date()" value= "Filter"></button>
+          </div>
+      </form>
+    </div>
+ 	</div>
+ </body>
+</html>
